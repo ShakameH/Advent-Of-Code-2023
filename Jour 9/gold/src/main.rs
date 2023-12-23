@@ -29,14 +29,14 @@ fn main() {
         let index_tree: usize = tree.len() - 1;
         for i in (0..index_tree).rev() {
             if i == index_tree {
-                tree[i].push(0);
+                tree[i].insert(0, 0);
             } else {
-                let next_value = tree[i + 1].last().unwrap().clone();
-                let previous_value = tree[i].last().unwrap().clone();
-                tree[i].push(next_value + previous_value);
+                let next_value = tree[i + 1][0];
+                let previous_value = tree[i][0];
+                tree[i].insert(0, previous_value - next_value);
             }
         }
-        result += tree[0].last().unwrap();
+        result += tree[0][0];
     }
     println!("{}", result);
 }
